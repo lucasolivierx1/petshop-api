@@ -43,10 +43,12 @@ public class UserService {
 		repository.deleteById(id);
 	}
 	
+	public User update(User obj) {
+		return repository.save(obj);	
+	}
+	
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(),  objDto.getName(), objDto.getEmail(), null);
 	}
-	
-	
 
 }
