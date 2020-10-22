@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -20,6 +21,7 @@ public class User implements Serializable{
 	private String email;
 	private String password;
 	
+	@DBRef(lazy = true)
 	private List<Pet> pets = new ArrayList<>();
 	
 	public User(){}
