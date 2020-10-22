@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petshopapp.petshopapi.domain.User;
+import com.petshopapp.petshopapi.dto.UserDTO;
 import com.petshopapp.petshopapi.respositories.UserRepository;
 import com.petshopapp.petshopapi.services.exception.ObjectNotFoundException;
 
@@ -31,5 +32,16 @@ public class UserService {
 		
 		return user.get();		
 	}
+	
+	
+	public User insert(User obj) {
+		return repository.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(),  objDto.getName(), objDto.getEmail(), null);
+	}
+	
+	
 
 }
