@@ -41,7 +41,6 @@ public class UserResource {
 
 	}
 	
-	
 	@RequestMapping(method = RequestMethod.POST )
 	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
 		User user = service.fromDTO(objDto);
@@ -50,5 +49,12 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 
 	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable String id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 
 }
