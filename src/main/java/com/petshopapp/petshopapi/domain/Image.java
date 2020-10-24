@@ -14,15 +14,12 @@ public class Image implements Serializable{
 	public String id;
 	public String base64;
 	
-	public Pet pet;
-	
 	public Image() {}
 
-	public Image(String id, String base64, Pet pet) {
+	public Image(String id, String base64) {
 		super();
 		this.id = id;
 		this.base64 = base64;
-		this.pet = pet;
 	}
 
 	public String getId() {
@@ -41,13 +38,6 @@ public class Image implements Serializable{
 		this.base64 = base64;
 	}
 
-	public Pet getPet() {
-		return pet;
-	}
-
-	public void setPet(Pet pet) {
-		this.pet = pet;
-	}
 
 	@Override
 	public int hashCode() {

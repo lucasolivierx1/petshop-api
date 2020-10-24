@@ -1,7 +1,10 @@
 package com.petshopapp.petshopapi.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.petshopapp.petshopapi.domain.Pet;
 import com.petshopapp.petshopapi.domain.User;
 
 public class UserDTO implements Serializable {
@@ -13,6 +16,16 @@ public class UserDTO implements Serializable {
 	private String name;
 	private String email;
 	private String password;
+	
+	private List<Pet> pets = new ArrayList<Pet>();	
+
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
 
 	public String getPassword() {
 		return password;
@@ -55,6 +68,7 @@ public class UserDTO implements Serializable {
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.password = user.getPassword();
+		this.pets = user.getPets();
 
 	}
 

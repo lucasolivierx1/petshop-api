@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -16,20 +17,19 @@ public class Pet implements Serializable{
 	private String id;
 	private String name;
 	private int sex;
-	private User owner;
 
 
+	@DBRef(lazy = true)
 	List<Image> images = new ArrayList<>();
 	
 	public Pet() {}
 	
-	public Pet(String id, String name, int sex, List<Image> images, User owner) {
+	public Pet(String id, String name, int sex, List<Image> images) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.sex = sex;
-		this.images = images;
-		this.owner = owner;
+		this.images = images == null? new ArrayList<>() : images;
 	}
 
 	
@@ -62,16 +62,6 @@ public class Pet implements Serializable{
 		return images;
 	}
 	
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

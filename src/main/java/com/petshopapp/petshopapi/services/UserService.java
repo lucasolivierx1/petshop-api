@@ -18,19 +18,14 @@ public class UserService {
 	private UserRepository repository;
 
 	public List<User> findAll() {
-
 		return repository.findAll();
-
 	}
 	
 	public User findById(String pId) {
-
 		Optional<User> user = repository.findById(pId);
-		
 		return user.orElseThrow(() -> new ObjectNotFoundException("usuário não encontrado!"));		
 	}
-	
-	
+		
 	public User insert(User obj) {
 		return repository.insert(obj);
 	}
@@ -45,7 +40,11 @@ public class UserService {
 	}
 	
 	public User fromDTO(UserDTO objDto) {
-		return new User(objDto.getId(),  objDto.getName(), objDto.getEmail(), null);
+		User user = new User(objDto.getId(),  objDto.getName(), objDto.getEmail(), objDto.getPassword());
+		
+		user.getPets().addAll(objDto.getPets());
+		
+		return user;
 	}
 
 }
