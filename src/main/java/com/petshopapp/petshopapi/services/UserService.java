@@ -24,13 +24,10 @@ public class UserService {
 	}
 	
 	public User findById(String pId) {
-		
+
 		Optional<User> user = repository.findById(pId);
 		
-		if (user.isEmpty()) 
-			throw new ObjectNotFoundException("usuário não encontrado!");
-		
-		return user.get();		
+		return user.orElseThrow(() -> new ObjectNotFoundException("usuário não encontrado!"));		
 	}
 	
 	
