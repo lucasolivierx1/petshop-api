@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.petshopapp.petshopapi.domain.Image;
 import com.petshopapp.petshopapi.domain.Pet;
@@ -25,6 +26,10 @@ public class Instantiation implements CommandLineRunner{
 	@Autowired
 	private ImageRepository imageRepository;
 	
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -34,9 +39,9 @@ public class Instantiation implements CommandLineRunner{
 		
 		imageRepository.deleteAll();
 		
-		User a1 = new User(null, "Maria",   "Maria@hotmail.com", "123123");
-		User a2 = new User(null, "José", "José@hotmail.com", "123123");
-		User a3 = new User(null, "Giovana ", "Giovana@hotmail.com", "123123");
+		User a1 = new User(null, "Maria",   "Maria@hotmail.com", pe.encode("123123") );
+		User a2 = new User(null, "José", "José@hotmail.com", pe.encode("123123"));
+		User a3 = new User(null, "Giovana ", "Giovana@hotmail.com", pe.encode("123123"));
 		
 		Pet p1 = new Pet(null, "Rex", 0, null);
 		Pet p2 = new Pet(null, "Rex", 0, null);

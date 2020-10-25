@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Document
 public class User implements Serializable{
@@ -19,6 +21,8 @@ public class User implements Serializable{
 	
 	private String name;
 	private String email;
+	
+	@JsonIgnore
 	private String password;
 	
 	@DBRef(lazy = true)

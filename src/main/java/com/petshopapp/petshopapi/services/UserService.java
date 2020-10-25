@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.petshopapp.petshopapi.domain.User;
@@ -14,6 +15,10 @@ import com.petshopapp.petshopapi.services.exception.ObjectNotFoundException;
 @Service
 public class UserService {
 
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	@Autowired
 	private UserRepository repository;
 
@@ -40,7 +45,7 @@ public class UserService {
 	}
 	
 	public User fromDTO(UserDTO objDto) {
-		User user = new User(objDto.getId(),  objDto.getName(), objDto.getEmail(), objDto.getPassword());
+		User user = new User(objDto.getId(),  objDto.getName(), objDto.getEmail(), pe.encode(objDto.getPassword()));
 		
 		user.getPets().addAll(objDto.getPets());
 		
